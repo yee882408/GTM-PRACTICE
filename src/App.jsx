@@ -16,10 +16,10 @@ function App() {
   window.dataLayer.push({
     event: 'event',
     eventProps: {
-      category: category,
-      action: action,
-      label: label,
-      value: value
+      category: "category",
+      action: "action",
+      label: "label",
+      value: "value"
     }
   });
     return (
