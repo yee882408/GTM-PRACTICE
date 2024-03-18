@@ -5,7 +5,7 @@ import TagManager from 'react-gtm-module'
 import './App.css'
 
 const tagManagerArgs = {
-    gtmId: 'GTM-000000'
+    gtmId: 'GTM-WHZ2SFNT'
 }
 
 TagManager.initialize(tagManagerArgs)
