@@ -13,7 +13,15 @@ TagManager.initialize(tagManagerArgs)
 
 function App() {
   const [count, setCount] = useState(0)
-
+  window.dataLayer.push({
+    event: 'event',
+    eventProps: {
+      category: category,
+      action: action,
+      label: label,
+      value: value
+    }
+  });
     return (
         <>
       <div>
