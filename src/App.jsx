@@ -3,19 +3,23 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import TagManager from 'react-gtm-module'
 import './App.css'
+import { GTMProvider } from '@elgorditosalsero/react-gtm-hook'
 
-const tagManagerArgs = {
-    gtmId: 'GTM-WHZ2SFNT'
+// const tagManagerArgs = {
+//     gtmId: 'GTM-WHZ2SFNT'
+// }
+const gtmParams = {
+  id: 'GTM-WHZ2SFNT',
+  // dataLayerName: 'customDataLayerName'
 }
-
-TagManager.initialize(tagManagerArgs)
+// TagManager.initialize(tagManagerArgs)
 
 
 function App() {
   const [count, setCount] = useState(0)
 
     return (
-    <>
+        <GTMProvider state={gtmParams}>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -36,7 +40,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-    </>
+    </GTMProvider>
   )
 }
 
