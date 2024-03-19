@@ -22,13 +22,48 @@ function App() {
       value: "value"
     }
   });
+  const handlePriceClick = () => {
+        window.dataLayer.push({
+          event: 'purchase',
+          ecommerce: {
+            transaction_id: 'T_12345',
+            affiliation: 'Google Merchandise Store',
+            value: 25.42,
+            tax: 4.90,
+            shipping: 5.99,
+            currency: 'USD',
+            coupon: 'SUMMER_SALE',
+            items: [
+             {
+              item_id: 'SKU_12345',
+              item_name: 'Stan and Friends Tee',
+              item_category: 'Apparel',
+              price: 9.99,
+              quantity: 1
+             },
+             {
+              item_id: 'SKU_12346',
+              item_name: "Google Grey Women's Tee",
+              item_category: 'Apparel',
+              price: 20.99,
+              quantity: 1
+             }]
+            }
+          });
+  }
   const handleClick = () => {
     window.dataLayer.push({
-      event: 'event-click',
-      eventProps: {
-        handleClick: "click",
+      'authorData' : {
+      'pagePostAuthor': 'Yee'
       }
-    });
+      });
+      window.dataLayer.push({
+        'authorData' : {
+        'pageCategory': 'google-tag-manager-tips',
+        'pagePostType': 'post'
+        }
+        });
+
   }
   console.log('window',window.dataLayer)
     return (
@@ -53,7 +88,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <button onClick={handleClick} style={{backgroundColor:"yellow",padding:"2rem"}}>add</button>
+      <button onClick={handlePriceClick} style={{backgroundColor:"yellow",padding:"2rem"}}>price</button>
+      <button onClick={handleClick} style={{backgroundColor:"red",padding:"2rem"}}>normal</button>
   </>
   )
 }
