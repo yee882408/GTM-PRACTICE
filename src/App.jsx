@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import TagManager from 'react-gtm-module'
 import './App.css'
+import WarningOnExit from "./Warning.jsx";
 
 const tagManagerArgs = {
-    gtmId: 'GTM-WHZ2SFNT'
+    gtmId: import.meta.env.VITE_GTM_ID
 }
 
 TagManager.initialize(tagManagerArgs)
@@ -92,7 +93,8 @@ function App() {
       </p>
       <button onClick={handlePriceClick} style={{backgroundColor:"yellow",padding:"2rem"}}>price</button>
       <button onClick={handleClick} style={{backgroundColor:"red",padding:"2rem"}}>normal</button>
-  </>
+          <WarningOnExit/>
+        </>
   )
 }
 
