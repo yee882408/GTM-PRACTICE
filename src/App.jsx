@@ -53,7 +53,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <button onClick={handleClick}></button>
+      <button onClick={handleClick} style={{backgroundColor:"yellow",padding:"2rem"}}>add</button>
   </>
   )
 }
