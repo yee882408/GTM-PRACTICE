@@ -53,6 +53,7 @@ function App() {
   }
   const handleClick = () => {
     window.dataLayer.push({
+      'event':'author',
       'authorData' : {
       'pagePostAuthor': 'Yee'
       }
