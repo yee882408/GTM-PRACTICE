@@ -22,6 +22,15 @@ function App() {
       value: "value"
     }
   });
+  const handleClick = () => {
+    window.dataLayer.push({
+      event: 'event-click',
+      eventProps: {
+        handleClick: "click",
+      }
+    });
+  }
+  console.log('window',window.dataLayer)
     return (
         <>
       <div>
@@ -44,6 +53,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <button onClick={handleClick}></button>
   </>
   )
 }
