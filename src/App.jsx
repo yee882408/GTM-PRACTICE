@@ -59,6 +59,7 @@ function App() {
       }
       });
       window.dataLayer.push({
+        'event':'author',
         'authorData' : {
         'pageCategory': 'google-tag-manager-tips',
         'pagePostType': 'post'
