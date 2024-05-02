@@ -4,13 +4,34 @@ import viteLogo from '/vite.svg'
 import TagManager from 'react-gtm-module'
 import './App.css'
 import WarningOnExit from "./Warning.jsx";
+import { GA4Provider, ga4 } from 'react-ga4';
+import ReactGA from "react-ga4";
 
 const tagManagerArgs = {
     gtmId: import.meta.env.VITE_GTM_ID
 }
 
 TagManager.initialize(tagManagerArgs)
+ReactGA.initialize("G-SBSSKLMMFK");
 
+const GaButton = ({ id, action, category, label }) => {
+    const handleButtonClick = () => {
+        // Track button click event
+        ReactGA.event({
+            action,
+            params: {
+                event_category: category,
+                event_label: label,
+            },
+        });
+    };
+
+    return (
+        <button id={id} onClick={handleButtonClick}>
+            Click Me
+        </button>
+    );
+};
 
 function App() {
   const [count, setCount] = useState(0)
@@ -68,34 +89,62 @@ function App() {
         });
 
   }
-  console.log('window',window.dataLayer)
+
+
+  function sendEventToGA4(buttonId) {
+        ga4.send('event', {
+            event_name: 'button_click',
+            event_params: {
+                button_id: buttonId,
+            },
+        });
+  }
+
+
     return (
-        <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <button onClick={handlePriceClick} style={{backgroundColor:"yellow",padding:"2rem"}}>price</button>
-      <button onClick={handleClick} style={{backgroundColor:"red",padding:"2rem"}}>normal</button>
-          <WarningOnExit/>
-        </>
-  )
+        // <GA4Provider measurementId="G-SBSSKLMMFK">
+            <>
+                <div>
+                    <a href="https://vitejs.dev" target="_blank">
+                        <img src={viteLogo} className="logo" alt="Vite logo"/>
+                    </a>
+                    <a href="https://react.dev" target="_blank">
+                        <img src={reactLogo} className="logo react" alt="React logo"/>
+                    </a>
+                </div>
+                <h1>Vite + React</h1>
+                <div className="card">
+                    <button onClick={() => setCount((count) => count + 1)}>
+                        count is {count}
+                    </button>
+                    <p>
+                        Edit <code>src/App.jsx</code> and save to test HMR
+                    </p>
+                </div>
+                <p className="read-the-docs">
+                    Click on the Vite and React logos to learn more
+                </p>
+                <button onClick={handlePriceClick} style={{backgroundColor: "yellow", padding: "2rem"}}>price</button>
+                <button onClick={handleClick} style={{backgroundColor: "red", padding: "2rem"}}>normal</button>
+
+                <GaButton
+                    id="test-ga"
+                    action="click"
+                    category="Button Click"
+                    label="Test Button Click"
+                />
+
+                {/* Button with id 'test-ga-two' */}
+                <GaButton
+                    id="test-ga-two"
+                    action="click"
+                    category="Button Click"
+                    label="Test Button Two Click"
+                />
+                <WarningOnExit/>
+            </>
+        // </GA4Provider>
+    )
 }
 
 export default App
